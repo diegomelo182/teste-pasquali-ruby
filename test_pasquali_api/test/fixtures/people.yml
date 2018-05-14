@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cpf_cnpj: MyString
+  business_name: MyText
+  name: MyText
+  bday: 2018-05-14
+  type: 1
+
+two:
+  cpf_cnpj: MyString
+  business_name: MyText
+  name: MyText
+  bday: 2018-05-14
+  type: 1
