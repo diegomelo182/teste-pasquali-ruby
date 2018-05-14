@@ -5,7 +5,7 @@ class CreatePeople < ActiveRecord::Migration[5.2]
       t.text :business_name
       t.text :name
       t.date :bday
-      t.integer :type
+      t.integer :kind
 
       t.timestamps
     end

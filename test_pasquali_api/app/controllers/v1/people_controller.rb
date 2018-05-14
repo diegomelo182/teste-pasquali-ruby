@@ -19,7 +19,7 @@ module V1
       @person = Person.new(person_params)
   
       if @person.save
-        render json: @person, status: :created, location: @person
+        render json: @person, status: :created
       else
         render json: @person.errors, status: :unprocessable_entity
       end
@@ -47,7 +47,7 @@ module V1
   
       # Only allow a trusted parameter "white list" through.
       def person_params
-        params.require(:person).permit(:cpf_cnpj, :business_name, :name, :bday, :type)
+        params.require(:person).permit(:cpf_cnpj, :business_name, :name, :bday, :kind)
       end
   end
 end

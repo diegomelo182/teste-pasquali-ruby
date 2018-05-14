@@ -19,7 +19,7 @@ module V1
       @account = Account.new(account_params)
   
       if @account.save
-        render json: @account, status: :created, location: @account
+        render json: @account, status: :created
       else
         render json: @account.errors, status: :unprocessable_entity
       end
@@ -47,7 +47,7 @@ module V1
   
       # Only allow a trusted parameter "white list" through.
       def account_params
-        params.require(:account).permit(:name, :balance, :type, :status, :parent_account_id, :person_id)
+        params.require(:account).permit(:name, :balance, :kind, :status, :parent_account_id, :person_id)
       end
   end
 end

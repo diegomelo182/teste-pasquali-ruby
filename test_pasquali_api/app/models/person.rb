@@ -1,22 +1,29 @@
 class Person < ApplicationRecord
-  enum type: [:individual_taxpayers, :business_taxpayers]
+  enum kind: [:individual_taxpayers, :business_taxpayers]
+
+  has_one :accounts,
+    dependent: :destroy
 
   validates :cpf_cnpj,
+    presence: true,
     uniqueness: true,
     on: :create
+
   validates :name,
     presence: true
+
   validates :business_name,
     presence: true,
     if: :is_business?
+
   validates :bday,
     presence: true,
     unless: :is_business?
-  validates :type,
+
+  validates :kind,
     presence: true
 
-  private
-    def is_business
-      type === 1
-    end
+  def is_business?
+    kind == 'business_taxpayers'
+  end
 end

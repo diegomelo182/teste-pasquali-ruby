@@ -3,7 +3,7 @@ class CreateAccounts < ActiveRecord::Migration[5.2]
     create_table :accounts do |t|
       t.text :name
       t.float :balance
-      t.integer :type
+      t.integer :kind
       t.integer :status
       t.integer :parent_account_id
       t.references :person, foreign_key: true

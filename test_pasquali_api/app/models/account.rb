@@ -9,6 +9,9 @@ class Account < ApplicationRecord
     foreign_key: "parent_account_id"
   belongs_to :person
 
-  validates :name, :balance, :type, :status, presence: true
-  validates :person, uniqueness: true
+  validates :name, :balance, :kind, :status,
+    presence: true
+
+  validates :person,
+    uniqueness: true
 end
