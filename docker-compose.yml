@@ -19,6 +19,11 @@ services:
     depends_on:
       - db
   front:
-    image: node
+    build:
+      context: .
+      dockerfile: DockerfileFront
     ports:
       - "4200:4200"
+    command: ng serve --host 0.0.0.0
+    volumes:
+      - ./test-pasquali-front:/myapp
