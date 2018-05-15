@@ -1,5 +1,8 @@
 class Person < ApplicationRecord
-  enum kind: [:individual_taxpayers, :business_taxpayers]
+  enum kind: [
+    :individual_taxpayers,
+    :business_taxpayers
+  ]
 
   has_one :accounts,
     dependent: :destroy

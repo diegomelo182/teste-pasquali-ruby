@@ -1,17 +1,22 @@
 module V1
   class AccountsController < ApplicationController
-    before_action :set_account, only: [:show, :update, :destroy]
+    include AccountsHandler
+
+    before_action :set_account, only: [:update, :destroy]
   
     # GET /accounts
     def index
       @accounts = Account.all
   
-      render json: @accounts
+      render json: @accounts, include: [:person]
     end
   
     # GET /accounts/1
     def show
-      render json: @account
+      accounts = get_account_with_childs_array(params[:id])
+      response = account_with_childs_json_build(accounts)
+
+      render json: response[:data], status: response[:status]
     end
   
     # POST /accounts

@@ -1,16 +1,13 @@
 class Account < ApplicationRecord
-  enum kind: [:matrix, :units]
-  enum status: [:activated, :blocked, :canceled]
-
-  has_many :childs,
-    class_name: 'Account', 
-    foreign_key: "parent_account_id",
-    inverse_of: 'Account'
-
-  belongs_to :parent_account,
-    class_name: 'Account',
-    foreign_key: "parent_account_id",
-    optional: true
+  enum kind: [
+    :matrix,
+    :units
+  ]
+  enum status: [
+    :activated,
+    :blocked,
+    :canceled
+  ]
 
   belongs_to :person
 

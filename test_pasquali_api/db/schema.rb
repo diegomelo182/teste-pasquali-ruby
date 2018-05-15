@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2018_05_14_181221) do
 
-  create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "name"
     t.float "balance"
     t.integer "kind"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2018_05_14_181221) do
     t.index ["person_id"], name: "index_accounts_on_person_id"
   end
 
-  create_table "people", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "people", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "cpf_cnpj"
     t.text "business_name"
     t.text "name"
