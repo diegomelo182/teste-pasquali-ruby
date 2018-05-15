@@ -2,13 +2,13 @@ class ApplicationController < ActionController::API
     before_action :jwt_auth_validation
 
   def jwt_auth_validation
-    if request.headers['Authentication'].present?
-      token_decoded = jwt_decode(request.headers['Authentication'])
+    if request.headers['Authorization'].present?
+      token_decoded = jwt_decode(request.headers['Authorization'])
 
       if token_decoded.length > 1
         # jwt has been successfully decoded
         if jwt_invalid_payload(token_decoded[0])
-          render json: { error: 'Authentication error, invalid payload.' }, status: :unauthorized
+          render json: { error: 'Authorization error, invalid payload.' }, status: :unauthorized
           return;
         elsif !jwt_invalid_payload(token_decoded[0]) && token_decoded[0]['request_type'] == 'password_recovery'
           # password recovery token verification
@@ -20,10 +20,10 @@ class ApplicationController < ActionController::API
       elsif token_decoded.length == 1
         # jwt hasn't been decoded
         if !token_decoded[0][:expired].nil? && token_decoded[0][:expired]
-          render json: { error: 'Authentication error, token has been expired.' }, status: :unauthorized
+          render json: { error: 'Authorization error, token has been expired.' }, status: :unauthorized
           return;
         else
-          render json: { error: 'Authentication error, token is wrong on header Authentication' }, status: :unauthorized
+          render json: { error: 'Authorization error, token is wrong on header Authorization' }, status: :unauthorized
           return;
         end
       end
@@ -44,7 +44,7 @@ class ApplicationController < ActionController::API
         end
       end
     else
-      render json: { error: 'Authentication error, token is missing on header Authentication' }, status: :unauthorized
+      render json: { error: 'Authorization error, token is missing on header Authorization' }, status: :unauthorized
       return;
     end
   end
@@ -65,6 +65,6 @@ class ApplicationController < ActionController::API
     end
 
     def jwt_invalid_payload(payload)
-      !payload['token_type'].present? || payload['token_type'].present? && payload['token_type'] != 'client_a2'
+      !payload['token_type'].present? || payload['token_type'].present? && payload['token_type'] != 'client_angular'
     end
 end

@@ -1,10 +1,12 @@
 module V1
   class PeopleController < ApplicationController
+    has_scope :by_kind
+
     before_action :set_person, only: [:show, :update, :destroy]
   
     # GET /people
     def index
-      @people = Person.all
+      @people = apply_scopes(Person).all
   
       render json: @people
     end

@@ -4,6 +4,9 @@ Será necessário ter o Docker e o Docker compose instalado para executar os pro
 
 Para subir o projeto execute `docker-compose up`, pronto agora voce pode acessar o back através de `http://localhost:3000`.
 
+Segue o link do repositório do front end 
+[aqui](https://github.com/diegomelo182/teste-pasquali-angular)
+
 ## Rails
 
 Na primeira execução será necessário rodar o `rails db:create db:migrate`, para isso digite `docker ps` ou `docker container ls` e procure pelo container `test-pasquali_web`, em seguida copie o `CONTAINER ID` dele, e logo após execute `docker exec CONTAINER_ID rails db:create db:migrate`, pronto a API já vai estar funcionando perfeitamente.

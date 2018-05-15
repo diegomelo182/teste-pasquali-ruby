@@ -15,7 +15,7 @@ module AuthHandler
     if auth_ok
       response = {
         data: {
-          logged: true
+          token_type: 'client_angular'
         },
         status: 200
       }

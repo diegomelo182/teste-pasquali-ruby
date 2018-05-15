@@ -4,6 +4,8 @@ class Person < ApplicationRecord
     :business_taxpayers
   ]
 
+  scope :by_kind, ->(kind) { where("kind = ?", kind) }
+
   has_one :accounts,
     dependent: :destroy
 
