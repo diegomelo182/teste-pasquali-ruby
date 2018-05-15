@@ -2,7 +2,7 @@
 
 Será necessário ter o Docker e o Docker compose instalado para executar os projetos.
 
-Para subir o projeto execute `docker-compose up`, pronto agora voce pode acessar o front através da url `http://localhost:4200` e o back através de `http://localhost:3000`.
+Para subir o projeto execute `docker-compose up`, pronto agora voce pode acessar o back através de `http://localhost:3000`.
 
 ## Rails
 

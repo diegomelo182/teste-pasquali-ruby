@@ -14,17 +14,8 @@ services:
     build: .
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes:
-      - ./test_pasquali_api:/myapp
+      - .:/myapp
     ports:
       - "3000:3000"
     depends_on:
       - db
-  front:
-    build:
-      context: .
-      dockerfile: DockerfileFront
-    ports:
-      - "4200:4200"
-    command: ng serve --host 0.0.0.0
-    volumes:
-      - ./test-pasquali-front:/myapp
