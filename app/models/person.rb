@@ -6,7 +6,7 @@ class Person < ApplicationRecord
 
   scope :by_kind, ->(kind) { where("kind = ?", kind) }
 
-  has_one :accounts,
+  has_many :accounts,
     dependent: :destroy
 
   validates :cpf_cnpj,
