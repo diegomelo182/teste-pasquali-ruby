@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_14_181221) do
+ActiveRecord::Schema.define(version: 2018_05_16_065813) do
 
-  create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "name"
     t.date "init_date"
     t.float "balance"
@@ -26,7 +26,15 @@ ActiveRecord::Schema.define(version: 2018_05_14_181221) do
     t.index ["person_id"], name: "index_accounts_on_person_id"
   end
 
-  create_table "people", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "contributions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.float "amount"
+    t.bigint "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_contributions_on_account_id"
+  end
+
+  create_table "people", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "cpf_cnpj"
     t.text "business_name"
     t.text "name"
@@ -36,5 +44,18 @@ ActiveRecord::Schema.define(version: 2018_05_14_181221) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "transferences", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.float "amount"
+    t.bigint "account_id"
+    t.bigint "receiver_account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_transferences_on_account_id"
+    t.index ["receiver_account_id"], name: "fk_rails_8caad9fee0"
+  end
+
   add_foreign_key "accounts", "people"
+  add_foreign_key "contributions", "accounts"
+  add_foreign_key "transferences", "accounts"
+  add_foreign_key "transferences", "accounts", column: "receiver_account_id"
 end

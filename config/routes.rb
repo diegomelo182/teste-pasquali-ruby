@@ -3,5 +3,7 @@ Rails.application.routes.draw do
     post 'auth/login'
     resources :accounts
     resources :people
+    resources :contributions
+    resources :transferences
   end
 end
