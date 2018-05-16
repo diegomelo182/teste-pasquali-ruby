@@ -9,12 +9,15 @@ class Account < ApplicationRecord
     :canceled
   ]
 
+  scope :by_kind, ->(kind) { where("kind = ?", kind) }
+  scope :by_status, ->(status) { where("status = ?", status) }
+
   belongs_to :person
 
-  validates :name, :balance, :kind, :status,
+  validates :name, :balance, :init_date, :kind, :status,
     presence: true
 
-  validates :person,
+  validates :person_id,
     uniqueness: true
 
   validates :parent_account_id,

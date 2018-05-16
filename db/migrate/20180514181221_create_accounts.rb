@@ -2,6 +2,7 @@ class CreateAccounts < ActiveRecord::Migration[5.2]
   def change
     create_table :accounts do |t|
       t.text :name
+      t.date :init_date
       t.float :balance
       t.integer :kind
       t.integer :status

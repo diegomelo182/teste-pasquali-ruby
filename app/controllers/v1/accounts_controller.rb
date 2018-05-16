@@ -1,12 +1,15 @@
 module V1
   class AccountsController < ApplicationController
+    has_scope :by_kind
+    has_scope :by_status
+
     include AccountsHandler
 
     before_action :set_account, only: [:update, :destroy]
   
     # GET /accounts
     def index
-      @accounts = Account.all
+      @accounts = apply_scopes(Account).all
   
       render json: @accounts, include: [:person]
     end
@@ -52,7 +55,7 @@ module V1
   
       # Only allow a trusted parameter "white list" through.
       def account_params
-        params.require(:account).permit(:name, :balance, :kind, :status, :parent_account_id, :person_id)
+        params.require(:account).permit(:name, :balance, :kind, :init_date, :status, :parent_account_id, :person_id)
       end
   end
 end

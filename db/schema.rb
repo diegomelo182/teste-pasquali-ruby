@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2018_05_14_181221) do
 
   create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "name"
+    t.date "init_date"
     t.float "balance"
     t.integer "kind"
     t.integer "status"

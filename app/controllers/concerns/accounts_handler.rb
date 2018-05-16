@@ -20,17 +20,17 @@ module AccountsHandler
   end
 
   def get_account_with_childs_array(id)
-    Account.find_by_sql("WITH RECURSIVE my_cte(id, name, balance, kind, status, parent_account_id, person_id, created_at, updated_at) AS
+    Account.find_by_sql("WITH RECURSIVE accounts_recursive(id, name, init_date, balance, kind, status, parent_account_id, person_id, created_at, updated_at) AS
       (
         SELECT *
         FROM test_pasquali_api_development.accounts
           WHERE id = #{id.to_i}
         UNION ALL
-        SELECT accs.id, accs.name, accs.balance, accs.kind, accs.status, accs.parent_account_id, accs.person_id, accs.created_at, accs.updated_at
-        FROM my_cte AS acc
+        SELECT accs.*
+        FROM accounts_recursive AS acc
         JOIN test_pasquali_api_development.accounts AS accs
         ON acc.id = accs.parent_account_id
       )
-      SELECT * FROM my_cte;")
+      SELECT * FROM accounts_recursive;")
   end
 end
